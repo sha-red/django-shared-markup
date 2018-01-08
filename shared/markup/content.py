@@ -19,21 +19,19 @@ class MarkupContent(models.Model):
         (HTML, _("HTML")),
     )
     markup_format = models.CharField(max_length=20, choices=MARKUP_FORMATS, default=MARKDOWN)
-    text = models.TextField()
+    content = models.TextField(_("text"))
+    css_class = models.CharField(_("CSS-Klasse"), max_length=50, help_text=_("Über die CSS-Klasse kann die Darstellung gesteuert werden."), null=True, blank=True)
 
     class Meta:
         abstract = True
 
     def render(self, inline=False, **kwargs):
-        # TODO Use request?
-
         if self.markup_format == self.MARKDOWN:
             # Marked safe by the markdown converter
-            return markdown_to_html(self.text, inline=inline)
+            return markdown_to_html(self.content, inline=inline)
 
         elif self.markup_format == self.HTML:
-            return mark_safe(self.text)
+            return mark_safe(self.content)
 
         else:
-            # TODO Use linebreaks filter
-            return linebreaks(conditional_escape(self.text))
+            return linebreaks(conditional_escape(self.content))
