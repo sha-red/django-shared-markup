@@ -55,3 +55,16 @@ urlfinder2 = re.compile('\s(http:\/\/\S+)')
 def urlify_markdown(value):
     value = urlfinder.sub(r'<\1>', value)
     return urlfinder2.sub(r' <\1>', value)
+
+
+@register.filter(needs_autoescape=False)
+@stringfilter
+def html_to_markdown(html, autoescape=None):
+    """
+    Converts a HTML string to markdown, using the html2text tool.
+    """
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    return markdown_utils.html_to_markdown(esc(text))

@@ -5,6 +5,8 @@ from __future__ import unicode_literals
 import markdown as markdown_module
 from django.utils.html import strip_tags
 from django.utils.safestring import mark_safe
+
+import html2text
 from shared.utils.text import html_entities_to_unicode
 
 
@@ -80,3 +82,7 @@ def markdown_to_text(text, **kwargs):
     """
     html = markdown_to_html(text, **kwargs)
     return strip_tags(html_entities_to_unicode(html))
+
+
+def html_to_markdown(html):
+    return html2text.html2text(html)

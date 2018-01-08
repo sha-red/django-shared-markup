@@ -37,6 +37,7 @@ setup(
         # 'django<2', commented out to make `pip install -U` easier
         'beautifulsoup4',
         'lxml',
+        'html2text',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
