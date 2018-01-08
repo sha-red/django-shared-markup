@@ -1,0 +1,15 @@
+# -*- coding: UTF-8 -*-
+# Erik Stein <code@classlibrary.net>, 09/2010
+
+from .base import Markup, PLAINTEXT_MARKUP_DESCRIPTION
+from .html import HTMLMarkup, MARKUP_DESCRIPTION as HTML_MARKUP_DESCRIPTION
+from .markdown import MarkdownMarkup, MARKUP_DESCRIPTION as MARKDOWN_MARKUP_DESCRIPTION
+from .rst import RestructuredtextMarkup, MARKUP_DESCRIPTION as RST_MARKUP_DESCRIPTION
+
+
+DEFAULT_MARKUP_TYPES = [
+    PLAINTEXT_MARKUP_DESCRIPTION,
+    HTML_MARKUP_DESCRIPTION,
+    MARKDOWN_MARKUP_DESCRIPTION,
+    RST_MARKUP_DESCRIPTION,
+]
