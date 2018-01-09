@@ -67,4 +67,4 @@ def html_to_markdown(html, autoescape=None):
         esc = conditional_escape
     else:
         esc = lambda x: x
-    return markdown_utils.html_to_markdown(esc(text))
+    return esc(markdown_utils.html_to_markdown(html))
