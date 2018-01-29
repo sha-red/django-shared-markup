@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
 from django.utils.html import conditional_escape, linebreaks
 
-from .utils import markdown_to_html
+from .markdown_utils import markdown_to_html
 
 
 class MarkupContent(models.Model):
