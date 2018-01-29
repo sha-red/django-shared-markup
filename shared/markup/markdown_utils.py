@@ -18,8 +18,8 @@ class PseudoParagraphProcessor(markdown_module.blockprocessors.ParagraphProcesso
     def run(self, parent, blocks):
         block = blocks.pop(0)
         if block.strip():
-            # Create element without enclosing tags
-            p = markdown_module.util.etree.SubElement(parent, None)
+            # Create span element instead of paragraph
+            p = markdown_module.util.etree.SubElement(parent, 'span')
             p.text = block.lstrip()
 
 
