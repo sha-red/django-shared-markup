@@ -1,0 +1,2 @@
+LATER
+- Use markdownify (https://github.com/matthewwithanm/python-markdownify/tree/develop/markdownify) to convert HTML fields to markdown

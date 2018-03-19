@@ -9,7 +9,7 @@ from django.utils.html import conditional_escape, linebreaks
 from .markdown_utils import markdown_to_html
 
 
-class MarkupContent(models.Model):
+class BaseMarkupContent(models.Model):
     PLAIN_TEXT = 'text/plain'
     MARKDOWN = 'text/x-markdown'
     HTML = 'text/html'
@@ -18,9 +18,9 @@ class MarkupContent(models.Model):
         (PLAIN_TEXT, _("Reiner Text")),
         (HTML, _("HTML")),
     )
-    markup_format = models.CharField(max_length=20, choices=MARKUP_FORMATS, default=MARKDOWN)
-    content = models.TextField(_("text"))
-    css_class = models.CharField(_("CSS-Klasse"), max_length=50, help_text=_("Über die CSS-Klasse kann die Darstellung gesteuert werden."), null=True, blank=True)
+    markup_format = models.CharField(max_length=20,
+                                     choices=MARKUP_FORMATS, default=MARKDOWN)
+    content = models.TextField(_("text"), default="")
 
     class Meta:
         abstract = True
@@ -35,3 +35,11 @@ class MarkupContent(models.Model):
 
         else:
             return linebreaks(conditional_escape(self.content))
+
+
+# FIXME Legacy support, remove here
+class MarkupContent(BaseMarkupContent):
+    css_class = models.CharField(_("CSS-Klasse"), max_length=50, help_text=_("Über die CSS-Klasse kann die Darstellung gesteuert werden."), null=True, blank=True)
+
+    class Meta:
+        abstract = True
