@@ -9,6 +9,8 @@ from django.utils.html import conditional_escape, linebreaks
 from .markdown_utils import markdown_to_html
 
 
+# TODO Refactor, use a MarkupField which takes care of the extra markup_format field
+
 class BaseMarkupContent(models.Model):
     PLAIN_TEXT = 'text/plain'
     MARKDOWN = 'text/x-markdown'
@@ -26,11 +28,11 @@ class BaseMarkupContent(models.Model):
         abstract = True
 
     def render(self, inline=False, **kwargs):
-        if self.markup_format == self.MARKDOWN:
+        if self.markup_format == BaseMarkupContent.MARKDOWN:
             # Marked safe by the markdown converter
             return markdown_to_html(self.content, inline=inline)
 
-        elif self.markup_format == self.HTML:
+        elif self.markup_format == BaseMarkupContent.HTML:
             return mark_safe(self.content)
 
         else:
