@@ -38,6 +38,7 @@ setup(
         'beautifulsoup4',
         'lxml',
         'html2text',
+        'markdown',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
