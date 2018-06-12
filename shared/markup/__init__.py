@@ -1,1 +1,4 @@
-__version__ = '0.5'
+try:
+    from ._version import __version__
+except ImportError:
+    pass
